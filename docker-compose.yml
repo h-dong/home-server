@@ -9,7 +9,7 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer/data:/data
+      - ~/server-data/portainer/data:/data
   freshrss:
     image: lscr.io/linuxserver/freshrss:latest
     container_name: freshrss
@@ -18,7 +18,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ./freshrss/config:/config
+      - ~/server-data/freshrss/config:/config
     ports:
-      - 9001:9001
+      - 9001:80
     restart: unless-stopped
