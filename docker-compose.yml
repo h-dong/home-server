@@ -4,12 +4,21 @@ services:
   portainer:
     image: portainer/portainer
     container_name: portainer
-    restart: always
+    restart: unless-stopped
     ports:
-      - "9000:9000"
+      - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-
-volumes:
-  portainer_data:
+      - ./portainer/data:/data
+  freshrss:
+    image: lscr.io/linuxserver/freshrss:latest
+    container_name: freshrss
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./freshrss/config:/config
+    ports:
+      - 9001:9001
+    restart: unless-stopped
