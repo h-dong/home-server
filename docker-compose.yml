@@ -1,12 +1,26 @@
 version: '3'
 
 services:
+  homepage:
+    image: ghcr.io/benphelps/homepage:latest
+    container_name: homepage
+    ports:
+      - 9000:3000
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ~/server-data/homepage/config:/app/config # Make sure your local config directory exists
+      - ~/server-data/homepage/config/icons:/app/public/icons # for self hosted icons
+      - ~/server-data/homepage/config/images:/app/public/images # for self hosted images
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    restart: unless-stopped
   portainer:
     image: portainer/portainer
     container_name: portainer
     restart: unless-stopped
     ports:
-      - 9000:9000
+      - 9001:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/server-data/portainer/data:/data
@@ -20,5 +34,20 @@ services:
     volumes:
       - ~/server-data/freshrss/config:/config
     ports:
-      - 9001:80
+      - 9002:80
+    restart: unless-stopped
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    ports:
+      - 53:53/tcp
+      # - 53:53/udp
+      # - 784:784/udp
+      # - 853:853/tcp
+      - 9004:3000/tcp
+      # - 80:80/tcp
+      # - 443:443/tcp
+    volumes:
+      - ~/server-data/adguardhome/work:/opt/adguardhome/work
+      - ~/server-data/adguardhome/conf:/opt/adguardhome/conf
     restart: unless-stopped
