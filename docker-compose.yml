@@ -5,7 +5,7 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     ports:
-      - 9000:3000
+      - 80:3000
     environment:
       - PUID=1000
       - PGID=1000
@@ -20,7 +20,7 @@ services:
     container_name: portainer
     restart: unless-stopped
     ports:
-      - 9001:9000
+      - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DATA_PATH}/portainer/data:/data
@@ -34,7 +34,7 @@ services:
     volumes:
       - ${DATA_PATH}/freshrss/config:/config
     ports:
-      - 9002:80
+      - 9001:80
     restart: unless-stopped
   adguardhome:
     image: adguard/adguardhome
@@ -56,7 +56,7 @@ services:
         # - 5443:5443/tcp
         # - 5443:5443/udp
       # WebUI
-      - 9003:3000/tcp
+      - 9002:3000/tcp
     volumes:
       - ${DATA_PATH}/adguardhome/work:/opt/adguardhome/work
       - ${DATA_PATH}/adguardhome/conf:/opt/adguardhome/conf
