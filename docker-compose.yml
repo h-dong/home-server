@@ -10,9 +10,9 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - ~/server-data/homepage/config:/app/config # Make sure your local config directory exists
-      - ~/server-data/homepage/config/icons:/app/public/icons # for self hosted icons
-      - ~/server-data/homepage/config/images:/app/public/images # for self hosted images
+      - ${DATA_PATH}/homepage/config:/app/config # Make sure your local config directory exists
+      - ${DATA_PATH}/homepage/config/icons:/app/public/icons # for self hosted icons
+      - ${DATA_PATH}/homepage/config/images:/app/public/images # for self hosted images
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
     restart: unless-stopped
   portainer:
@@ -23,7 +23,7 @@ services:
       - 9001:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ~/server-data/portainer/data:/data
+      - ${DATA_PATH}/portainer/data:/data
   freshrss:
     image: lscr.io/linuxserver/freshrss:latest
     container_name: freshrss
@@ -32,7 +32,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ~/server-data/freshrss/config:/config
+      - ${DATA_PATH}/freshrss/config:/config
     ports:
       - 9002:80
     restart: unless-stopped
@@ -58,6 +58,6 @@ services:
       # WebUI
       - 9003:3000/tcp
     volumes:
-      - ~/server-data/adguardhome/work:/opt/adguardhome/work
-      - ~/server-data/adguardhome/conf:/opt/adguardhome/conf
+      - ${DATA_PATH}/adguardhome/work:/opt/adguardhome/work
+      - ${DATA_PATH}/adguardhome/conf:/opt/adguardhome/conf
     restart: unless-stopped

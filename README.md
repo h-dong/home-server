@@ -1,2 +1,5 @@
-# home-server
-Files used on home server
+# Home Server
+
+## Docker Compose
+
+Contains a number services within docker compose YML.
