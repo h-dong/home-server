@@ -55,8 +55,8 @@ services:
         # # DNSCrypt
         # - 5443:5443/tcp
         # - 5443:5443/udp
-        # WebUI
-        - 9003:3000/tcp
+      # WebUI
+      - 9003:3000/tcp
     volumes:
       - ~/server-data/adguardhome/work:/opt/adguardhome/work
       - ~/server-data/adguardhome/conf:/opt/adguardhome/conf
