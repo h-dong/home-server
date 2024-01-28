@@ -1,7 +1,7 @@
 version: '3'
 
 include:
-  - path: '/homepage/docker-compose.yml'
-  - path: '/portainer/docker-compose.yml'
-  - path: '/freshrss/docker-compose.yml'
-  - path: '/adguardhome/docker-compose.yml'
+  - ./homepage/docker-compose.yml
+  - ./portainer/docker-compose.yml
+  - ./freshrss/docker-compose.yml
+  - ./adguardhome/docker-compose.yml
