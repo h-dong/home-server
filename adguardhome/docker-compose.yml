@@ -23,7 +23,7 @@ services:
       # WebUI
       - 9002:3000/tcp
     volumes:
-      - ${DATA_PATH}/adguardhome/work:/opt/adguardhome/work
-      - ${DATA_PATH}/adguardhome/conf:/opt/adguardhome/conf
+      - /home/hao/server-data/adguardhome/work:/opt/adguardhome/work
+      - /home/hao/server-data/adguardhome/conf:/opt/adguardhome/conf
     restart: unless-stopped
 
