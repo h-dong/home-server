@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - /home/hao/server-data/coder/.config:/home/coder/.config
+      - /home/hao/server-data/code-server/.config:/home/coder/.config
       - /home/hao:/home/coder/project
     ports:
       - 9003:8080
