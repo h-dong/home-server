@@ -1,63 +1,7 @@
 version: '3'
 
-services:
-  homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
-    ports:
-      - 80:3000
-    environment:
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - ${DATA_PATH}/homepage/config:/app/config # Make sure your local config directory exists
-      - ${DATA_PATH}/homepage/config/icons:/app/public/icons # for self hosted icons
-      - ${DATA_PATH}/homepage/config/images:/app/public/images # for self hosted images
-      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
-    restart: unless-stopped
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: unless-stopped
-    ports:
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ${DATA_PATH}/portainer/data:/data
-  freshrss:
-    image: lscr.io/linuxserver/freshrss:latest
-    container_name: freshrss
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    volumes:
-      - ${DATA_PATH}/freshrss/config:/config
-    ports:
-      - 9001:80
-    restart: unless-stopped
-  adguardhome:
-    image: adguard/adguardhome
-    container_name: adguardhome
-    ports:
-      # DNS
-      - 5353:53
-        # # DHCP server
-        # - 67:67/udp
-        # - 68:68/tcp
-        # - 68:68/udp
-        # # HTTPS/DNS-over-HTTPS
-        # - 443:443/tcp
-        # # DNS-over-TLS
-        # - 853:853/tcp
-        # # DNS-over-QUIC
-        # - 784:784/udp
-        # # DNSCrypt
-        # - 5443:5443/tcp
-        # - 5443:5443/udp
-      # WebUI
-      - 9002:3000/tcp
-    volumes:
-      - ${DATA_PATH}/adguardhome/work:/opt/adguardhome/work
-      - ${DATA_PATH}/adguardhome/conf:/opt/adguardhome/conf
-    restart: unless-stopped
+include:
+  - path: '/homepage/docker-compose.yml'
+  - path: '/portainer/docker-compose.yml'
+  - path: '/freshrss/docker-compose.yml'
+  - path: '/adguardhome/docker-compose.yml'
