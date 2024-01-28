@@ -41,7 +41,7 @@ services:
     container_name: adguardhome
     ports:
       # DNS
-      - 53:53
+      - 5353:53
         # # DHCP server
         # - 67:67/udp
         # - 68:68/tcp
