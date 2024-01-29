@@ -12,5 +12,5 @@ services:
       - /home/hao/server-data/code-server/config:/config
       - /home/hao:/home/coder/project
     ports:
-      - 9003:8080
+      - 9003:8443
     restart: unless-stopped
