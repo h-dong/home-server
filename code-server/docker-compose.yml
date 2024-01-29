@@ -2,14 +2,14 @@ version: '3'
 
 services:
   code-server:
-    image: codercom/code-server:latest
+    image: lscr.io/linuxserver/code-server:latest
     container_name: code-server
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Etc/UTC
     volumes:
-      - /home/hao/server-data/code-server/.config:/home/coder/.config
+      - /home/hao/server-data/code-server/config:/config
       - /home/hao:/home/coder/project
     ports:
       - 9003:8080
