@@ -10,3 +10,4 @@ include:
   networks:
     home-proxy-network:
       name: home_server_virtual_network
+      driver: bridge
