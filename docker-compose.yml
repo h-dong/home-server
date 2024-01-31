@@ -7,7 +7,7 @@ include:
   - ./adguardhome/docker-compose.yml
   - ./code-server/docker-compose.yml
 
-  networks:
-    home-proxy-network:
-      name: home_server_virtual_network
-      driver: bridge
+networks:
+  home-proxy-network:
+    name: home_server_virtual_network
+    driver: bridge
