@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
   code-server:
@@ -14,3 +14,5 @@ services:
     ports:
       - 9003:8443
     restart: unless-stopped
+    networks:
+      - home-proxy-network

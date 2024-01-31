@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
   homepage:
@@ -15,3 +15,5 @@ services:
       - /home/hao/server-data/homepage/config/images:/app/public/images # for self hosted images
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
     restart: unless-stopped
+    networks:
+      - home-proxy-network

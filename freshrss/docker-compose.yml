@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
   freshrss:
@@ -13,3 +13,5 @@ services:
     ports:
       - 9001:80
     restart: unless-stopped
+    networks:
+      - home-proxy-network

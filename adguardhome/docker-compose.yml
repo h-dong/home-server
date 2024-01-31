@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
   adguardhome:
@@ -26,4 +26,6 @@ services:
       - /home/hao/server-data/adguardhome/work:/opt/adguardhome/work
       - /home/hao/server-data/adguardhome/conf:/opt/adguardhome/conf
     restart: unless-stopped
+    networks:
+      - home-proxy-network
 
