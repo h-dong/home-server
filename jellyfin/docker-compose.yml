@@ -1,0 +1,26 @@
+version: "3"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      # - UMASK=022 #optional
+    volumes:
+      - /home/hao/server-data/jellyfin/config:/config
+      - /media/sda2_access/:/data/
+      - /media/sda2_access/TV:/data/tvshows
+      - /media/sda2_access/Movies:/data/movies
+      - /media/sda2_access/Music:/data/music
+      # - $CONCERTS_FOLDER:/data/concerts
+      # - /path for transcoding:/transcode #optional
+      # - /opt/vc/lib:/opt/vc/lib #optional
+    ports:
+      - 9004:8096
+    #   - 8920:8920 #optional
+    # devices:
+    #   - /dev/dri:/dev/dri #optional
+    #     # - /dev/vchiq:/dev/vchiq #optional
+    restart: unless-stopped
