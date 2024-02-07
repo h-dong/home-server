@@ -6,6 +6,7 @@ include:
   - ./freshrss/docker-compose.yml
   - ./adguardhome/docker-compose.yml
   - ./code-server/docker-compose.yml
+  - ./jellyfin/docker-compose.yml
 
 networks:
   home-proxy-network:
