@@ -12,6 +12,7 @@ services:
       - /home/hao/server-data/jellyfin/config:/config
       - /media/sda2_access/TV:/data/tvshows
       - /media/sda2_access/Movies:/data/movies
+      - /media/sda2_access/Music:/data/music
       # - $CONCERTS_FOLDER:/data/concerts
       # - /path for transcoding:/transcode #optional
       # - /opt/vc/lib:/opt/vc/lib #optional
