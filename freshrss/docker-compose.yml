@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   freshrss:
@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /home/hao/server-data/freshrss/config:/config
+      - ${APP_ROOT}/freshrss/config:/config
     ports:
       - 9001:80
     restart: unless-stopped

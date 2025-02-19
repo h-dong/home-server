@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   code-server:
@@ -9,8 +9,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /home/hao/server-data/code-server/config:/config
-      - /home/hao:/home/coder/project
+      - ${APP_ROOT}/code-server/config:/config
+      - ${VSCODE_PROJECT_ROOT}:/home/coder/project
     ports:
       - 9003:8443
     restart: unless-stopped

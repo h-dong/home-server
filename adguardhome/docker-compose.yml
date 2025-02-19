@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   adguardhome:
@@ -23,9 +23,8 @@ services:
       # WebUI
       - 9002:3000/tcp
     volumes:
-      - /home/hao/server-data/adguardhome/work:/opt/adguardhome/work
-      - /home/hao/server-data/adguardhome/conf:/opt/adguardhome/conf
+      - ${APP_ROOT}/adguardhome/work:/opt/adguardhome/work
+      - ${APP_ROOT}/adguardhome/conf:/opt/adguardhome/conf
     restart: unless-stopped
     networks:
       - home-proxy-network
-

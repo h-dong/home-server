@@ -10,9 +10,9 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /home/hao/server-data/homepage/config:/app/config # Make sure your local config directory exists
-      - /home/hao/server-data/homepage/config/icons:/app/public/icons # for self hosted icons
-      - /home/hao/server-data/homepage/config/images:/app/public/images # for self hosted images
+      - ${APP_ROOT}/homepage/config:/app/config # Make sure your local config directory exists
+      - ${APP_ROOT}/homepage/config/icons:/app/public/icons # for self hosted icons
+      - ${APP_ROOT}/homepage/config/images:/app/public/images # for self hosted images
       - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations
     restart: unless-stopped
     networks:
