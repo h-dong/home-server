@@ -12,7 +12,7 @@ services:
       - ${NEXTCLOUD_EXTERNAL_STORAGE}/data:/srv/nextcloud/data
     environment:
       - REDIS_HOST=redis
-      - MYSQL_HOST=db
+      - MYSQL_HOST=mariadb
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
