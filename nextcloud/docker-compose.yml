@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   nextcloud:
     image: nextcloud:latest
@@ -8,31 +6,61 @@ services:
     ports:
       - "9005:80"
     volumes:
-      - ${NEXTCLOUD_ROOT}/html:/var/www/html
-      - ${NEXTCLOUD_EXTERNAL_STORAGE}/data:/srv/nextcloud/data
+      - ${APP_ROOT}/nextcloud/html:/var/www/html
+      - ${EXTERNAL_STORAGE}:/srv/nextcloud/data
     environment:
       - REDIS_HOST=redis
       - MYSQL_HOST=mariadb
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${NEXTCLOUD_MYSQL_DATABASE}
+      - MYSQL_USER=${NEXTCLOUD_MYSQL_USER}
+      - MYSQL_PASSWORD=${NEXTCLOUD_MYSQL_PASSWORD}
+    networks:
+      - nextcloud_network
     depends_on:
-      - mariadb
-      - redis
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
   mariadb:
     image: mariadb:10.6
     container_name: nextcloud-mariadb
     restart: unless-stopped
     volumes:
-      - ${NEXTCLOUD_ROOT}/mariadb:/var/lib/mysql
+      - ${APP_ROOT}/nextcloud/mariadb:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${NEXTCLOUD_MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${NEXTCLOUD_MYSQL_DATABASE}
+      - MYSQL_USER=${NEXTCLOUD_MYSQL_USER}
+      - MYSQL_PASSWORD=${NEXTCLOUD_MYSQL_PASSWORD}
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "--password=${NEXTCLOUD_MYSQL_ROOT_PASSWORD}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - nextcloud_network
+
   redis:
     image: redis:alpine
     container_name: nextcloud-redis
     volumes:
-      - ${NEXTCLOUD_ROOT}/redis-data:/data
+      - ${APP_ROOT}/nextcloud/redis:/data
     restart: unless-stopped
+    networks:
+      - nextcloud_network
+
+networks:
+  nextcloud_network:
+    driver: bridge
