@@ -11,7 +11,7 @@ services:
       - ${NEXTCLOUD_ROOT}/html:/var/www/html
       - ${NEXTCLOUD_EXTERNAL_STORAGE}/data:/srv/nextcloud/data
     environment:
-      - REDIS_HOST: redis
+      - REDIS_HOST=redis
       - MYSQL_HOST=db
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
