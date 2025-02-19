@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 include:
   - ./homepage/docker-compose.yml
@@ -7,6 +7,7 @@ include:
   - ./adguardhome/docker-compose.yml
   - ./code-server/docker-compose.yml
   - ./jellyfin/docker-compose.yml
+  - ./nextcloud/docker-compose.yml
 
 networks:
   home-proxy-network:
