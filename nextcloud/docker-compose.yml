@@ -9,7 +9,7 @@ services:
       - "9005:80"
     volumes:
       - ${NEXTCLOUD_ROOT}/html:/var/www/html
-      - ${NEXTCLOUD_ROOT}/data:/srv/nextcloud/data
+      - ${NEXTCLOUD_EXTERNAL_STORAGE}/data:/srv/nextcloud/data
     environment:
       - REDIS_HOST: redis
       - MYSQL_HOST=db
